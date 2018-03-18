@@ -2,6 +2,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+
 def get_text(url):
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'lxml')
@@ -16,6 +17,7 @@ def get_text(url):
     text = regex_redundant_linebreaks.sub("\n", text)
     ltext = text.split("\n")
     return ltext
+
 
 def get_tags(url):
     resp = requests.get(url)
@@ -33,6 +35,7 @@ def get_tags(url):
 
     return ltext
 
+
 def get_pairs(name):
 
     org_url = "https://raw.githubusercontent.com/aforsyth/nfs-webscraper/355fba07d70d298597efe429fe3226d8360c49c4/output/{}_{}.txt".format(name, "original")
@@ -47,5 +50,17 @@ def get_pairs(name):
     return rv
 
 
-name = 'hamlet'
-l = get_pairs(name)
+# name = 'hamlet'
+# l = get_pairs(name)
+
+names = ['antony-and-cleopatra', 'asyoulikeit', 'errors', 'hamlet', 'henry4pt1', 'henry4pt2',
+         'henryv', 'juliuscaesar', 'lear', 'macbeth', 'merchant',
+         'msnd', 'muchado', 'othello', 'richardiii', 'romeojuliet',
+         'shrew', 'tempest', 'twelfthnight']
+
+
+pairs = []
+for name in names:
+    print("Extracting {} ...".format(name))
+    l = get_pairs(name)
+    pairs.extend(l)
