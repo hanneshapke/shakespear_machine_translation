@@ -61,6 +61,6 @@ names = ['antony-and-cleopatra', 'asyoulikeit', 'errors', 'hamlet', 'henry4pt1',
 
 pairs = []
 for name in names:
-    print("Extracting {} ...".format(name))
     l = get_pairs(name)
+    print("Extracted {} pairs from {}...".format(len(l), name))
     pairs.extend(l)
